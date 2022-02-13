@@ -49,4 +49,14 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
- 
+
+    #Siyu Yang
+    def sizeAbove(self,num):
+        #size filter by the num entered, find the course with size above num
+        return Schedule([course for course in self.courses if course['limit']>num])
+    def sizeBelow(self,num): 
+         #size filter by the num entered, find the course with size below num
+        return Schedule([course for course in self.courses if course['limit']<num])
+    def sizeEqual(self,num): 
+         #size filter by the num entered, find the course with size equals to num
+        return Schedule([course for course in self.courses if course['limit']==num])
