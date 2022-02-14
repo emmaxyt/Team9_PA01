@@ -24,13 +24,17 @@ timeofday (filter by day and time, e.g. meets at 11 on Wed)
 
 terms = {c['term'] for c in schedule.courses}
 
+#instructor -- filter by instructor email or lastname (SY)
+#description -- filter by phrase in the description (YZ)
+
 def topmenu():
-    '''
+    '''i
     topmenu is the top level loop of the course search app
     '''
     global schedule
     while True:         
         command = input(">> (h for help) ")
+        
         if command=='quit':
             return
         elif command in ['h','help']:
@@ -44,9 +48,14 @@ def topmenu():
         elif command in ['t', 'term']:
             term = input("enter a term:"+str(terms)+":")
             schedule = schedule.term([term]).sort('subject')
+
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
+        
+        elif command in ['i', 'instructor']:
+            instructor = input("enter an instructor:")
+            schedule = schedule.lastname([instructor])
         else:
             print('command',command,'is not supported')
             continue
