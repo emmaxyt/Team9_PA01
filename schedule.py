@@ -32,7 +32,7 @@ class Schedule():
         return Schedule([course for course in self.courses if course['instructor'][2] in emails])
 
     def term(self,terms):
-        ''' email returns the courses in a list of term'''
+        ''' term returns the courses in a list of term'''
         return Schedule([course for course in self.courses if course['term'] in terms])
 
     def enrolled(self,vals):
@@ -44,19 +44,34 @@ class Schedule():
         return Schedule([course for course in self.courses if course['subject'] in subjects])
 
     def sort(self,field):
-        if field=='subject':
+        if field == 'subject':
             return Schedule(sorted(self.courses, key= lambda course: course['subject']))
+        elif field == 'term':
+            return Schedule(sorted(self.courses, key= lambda course: course['term'], reverse=True))
         else:
             print("can't sort by "+str(field)+" yet")
             return self
-
-    #Siyu Yang
+    
+    # Implemented by Tianjun Cai
+    def course(self, courseinfo):
+        code = courseinfo.strip().split()
+        return Schedule([course for course in self.courses if course['code'] == code])
+    def time(self, timeinfo):
+        purify_timeinfo = timeinfo.strip().split()
+        time = purify_timeinfo[0]
+        date = purify_timeinfo[1:]
+        # Checks if times is empty, if start time matches with time,and if days is the same
+        return Schedule([course for course in self.courses if course['times'] != []
+        and course['times'][0]['start'] == int(time)*60
+        and set(date) == set(course['times'][0]['days'])])
+    
+    # Implemented by Siyu Yang
     def sizeAbove(self,num):
         #size filter by the num entered, find the course with size above num
-        return Schedule([course for course in self.courses if course['limit']>num])
+        return Schedule([course for course in self.courses if course['limit'] > num])
     def sizeBelow(self,num): 
          #size filter by the num entered, find the course with size below num
-        return Schedule([course for course in self.courses if course['limit']<num])
+        return Schedule([course for course in self.courses if course['limit'] < num])
     def sizeEqual(self,num): 
          #size filter by the num entered, find the course with size equals to num
-        return Schedule([course for course in self.courses if course['limit']==num])
+        return Schedule([course for course in self.courses if course['limit'] == num])

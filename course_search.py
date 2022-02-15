@@ -3,6 +3,7 @@ course_search is a Python script using a terminal based menu to help
 students search for courses they might want to take at Brandeis
 '''
 
+from time import time
 from schedule import Schedule
 import sys
 
@@ -23,18 +24,15 @@ timeofday (filter by day and time, e.g. meets at 11 on Wed)
 '''
 
 terms = {c['term'] for c in schedule.courses}
-
-#instructor -- filter by instructor email or lastname (SY)
-#description -- filter by phrase in the description (YZ)
+days = ('m', 'tu', 'w', 'th', 'f')
 
 def topmenu():
-    '''i
+    '''
     topmenu is the top level loop of the course search app
     '''
     global schedule
     while True:         
         command = input(">> (h for help) ")
-        
         if command=='quit':
             return
         elif command in ['h','help']:
@@ -49,17 +47,24 @@ def topmenu():
             term = input("enter a term:"+str(terms)+":")
             schedule = schedule.term([term]).sort('subject')
 
-        elif command in ['s','subject']:
+        # Implemented by Tianjun Cai
+        elif command in ['c', 'course']:   
+            course = input("enter a couse (i.e. COSI 12B):")
+            schedule = schedule.course(course).sort('term')
+
+        elif command in ['s','subject']: 
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
-        
-        elif command in ['i', 'instructor']:
-            instructor = input("enter an instructor:")
-            schedule = schedule.lastname([instructor])
+
+        # Implemented by Tianjun Cai
+        elif command in ['time', 'timeofday']: 
+            time = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
+            schedule = schedule.time(time).sort('subject')
+
         else:
             print('command',command,'is not supported')
             continue
-
+        
         print("courses has",len(schedule.courses),'elements',end="\n\n")
         print('here are the first 10')
         for course in schedule.courses[:10]:
