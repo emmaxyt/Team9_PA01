@@ -1,11 +1,16 @@
+# pylint: disable=trailing-whitespace
 '''
 course_search is a Python script using a terminal based menu to help
 students search for courses they might want to take at Brandeis
 '''
+<<<<<<< Updated upstream
 
 from time import time
 from schedule import Schedule
+=======
+>>>>>>> Stashed changes
 import sys
+from schedule import Schedule
 
 schedule = Schedule()
 schedule.load_courses()
@@ -15,6 +20,7 @@ TOP_LEVEL_MENU = '''
 quit
 reset
 term  (filter by term)
+limit  (filter by class limit)
 course (filter by coursenum, e.g. COSI 103a)
 instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
@@ -24,7 +30,12 @@ timeofday (filter by day and time, e.g. meets at 11 on Wed)
 '''
 
 terms = {c['term'] for c in schedule.courses}
+<<<<<<< Updated upstream
 days = ('m', 'tu', 'w', 'th', 'f')
+=======
+
+#description -- filter by phrase in the description (YZ)
+>>>>>>> Stashed changes
 
 def topmenu():
     '''
@@ -46,6 +57,7 @@ def topmenu():
         elif command in ['t', 'term']:
             term = input("enter a term:"+str(terms)+":")
             schedule = schedule.term([term]).sort('subject')
+<<<<<<< Updated upstream
 
         # Implemented by Tianjun Cai
         elif command in ['c', 'course']:   
@@ -65,6 +77,20 @@ def topmenu():
             print('command',command,'is not supported')
             continue
         
+=======
+        elif command in ['s','subject']:
+            subject = input("enter a subject:")
+            schedule = schedule.subject([subject])
+        elif command in ['i', 'instructor']:
+            instructor = input("enter an instructor:")
+            schedule = schedule.lastname([instructor])
+        elif command in ['l', 'limit']:
+            limit = int(input("enter a number of class limit:"))
+            schedule = schedule.sizeAbove(limit)
+        else:
+            print('command',command,'is not supported')
+            continue
+>>>>>>> Stashed changes
         print("courses has",len(schedule.courses),'elements',end="\n\n")
         print('here are the first 10')
         for course in schedule.courses[:10]:
@@ -80,4 +106,3 @@ def print_course(course):
 
 if __name__ == '__main__':
     topmenu()
-
