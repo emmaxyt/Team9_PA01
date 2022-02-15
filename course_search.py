@@ -16,7 +16,8 @@ TOP_LEVEL_MENU = '''
 quit
 reset
 term  (filter by term)
-limit  (filter by class limit)
+above  (filter by class limit that is above a certain number)
+below (filter by class limit that is below a certain number)
 course (filter by coursenum, e.g. COSI 103a)
 instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
@@ -73,9 +74,13 @@ def topmenu():
             instructor = input("enter an instructor:")
             schedule = schedule.lastname([instructor])
          #implemented by Siyu
-        elif command in ['l', 'limit']:
-            limit = int(input("enter a number of class limit:"))
-            schedule = schedule.sizeAbove(limit)
+        elif command in ['a', 'above']:
+            above = int(input("enter a number of class limit:"))
+            schedule = schedule.sizeAbove(above)
+        elif command in ['b', 'below']:
+            below = int(input("enter a number of class limit:"))
+            schedule = schedule.sizeBelow(below)
+            
         else:
             print('command',command,'is not supported')
             continue

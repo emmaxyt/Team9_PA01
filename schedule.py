@@ -67,6 +67,10 @@ class Schedule():
         and set(date) == set(course['times'][0]['days'])])
     
     # Implemented by Siyu Yang
+    def sizeBelow(self,num):
+         #size filter by the num entered, find the course with size below num
+        return Schedule([course for course in self.courses if course['limit']is not None and course['limit']<num])
+
     def sizeAbove(self,num):
         #size filter by the num entered, find the course with size above num
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']>num])
