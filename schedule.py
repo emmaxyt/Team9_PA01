@@ -33,12 +33,7 @@ class Schedule():
         return Schedule([course for course in self.courses if course['instructor'][2] in emails])
 
     def term(self,terms):
-<<<<<<< Updated upstream
         ''' term returns the courses in a list of term'''
-=======
-        ''' email returns the courses in a list of term'''
-        
->>>>>>> Stashed changes
         return Schedule([course for course in self.courses if course['term'] in terms])
 
     def enrolled(self,vals):
@@ -74,15 +69,5 @@ class Schedule():
     # Implemented by Siyu Yang
     def sizeAbove(self,num):
         #size filter by the num entered, find the course with size above num
-<<<<<<< Updated upstream
-        return Schedule([course for course in self.courses if course['limit'] > num])
-    def sizeBelow(self,num): 
-         #size filter by the num entered, find the course with size below num
-        return Schedule([course for course in self.courses if course['limit'] < num])
-    def sizeEqual(self,num): 
-         #size filter by the num entered, find the course with size equals to num
-        return Schedule([course for course in self.courses if course['limit'] == num])
-=======
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']>num])
 
->>>>>>> Stashed changes
