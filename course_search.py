@@ -3,14 +3,10 @@
 course_search is a Python script using a terminal based menu to help
 students search for courses they might want to take at Brandeis
 '''
-<<<<<<< Updated upstream
 
 from time import time
 from schedule import Schedule
-=======
->>>>>>> Stashed changes
 import sys
-from schedule import Schedule
 
 schedule = Schedule()
 schedule.load_courses()
@@ -30,12 +26,7 @@ timeofday (filter by day and time, e.g. meets at 11 on Wed)
 '''
 
 terms = {c['term'] for c in schedule.courses}
-<<<<<<< Updated upstream
 days = ('m', 'tu', 'w', 'th', 'f')
-=======
-
-#description -- filter by phrase in the description (YZ)
->>>>>>> Stashed changes
 
 def topmenu():
     '''
@@ -54,10 +45,10 @@ def topmenu():
             schedule.load_courses()
             schedule = schedule.enrolled(range(5,1000))
             continue
+
         elif command in ['t', 'term']:
             term = input("enter a term:"+str(terms)+":")
             schedule = schedule.term([term]).sort('subject')
-<<<<<<< Updated upstream
 
         # Implemented by Tianjun Cai
         elif command in ['c', 'course']:   
@@ -73,24 +64,22 @@ def topmenu():
             time = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
             schedule = schedule.time(time).sort('subject')
 
-        else:
-            print('command',command,'is not supported')
-            continue
-        
-=======
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
+
+        #implemented by Siyu
         elif command in ['i', 'instructor']:
             instructor = input("enter an instructor:")
             schedule = schedule.lastname([instructor])
+         #implemented by Siyu
         elif command in ['l', 'limit']:
             limit = int(input("enter a number of class limit:"))
             schedule = schedule.sizeAbove(limit)
         else:
             print('command',command,'is not supported')
             continue
->>>>>>> Stashed changes
+
         print("courses has",len(schedule.courses),'elements',end="\n\n")
         print('here are the first 10')
         for course in schedule.courses[:10]:
