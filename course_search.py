@@ -80,7 +80,18 @@ def topmenu():
         elif command in ['b', 'below']:
             below = int(input("enter a number of class limit:"))
             schedule = schedule.sizeBelow(below)
-            
+        
+        #implemented by Emma Xu
+        elif command in ['d', 'description']:
+            '''gives the courses containing the input phrase in their descriptions'''
+            phrase = input("enter a phrase in course description:")
+            schedule = schedule.description(phrase)
+        #implemented by Emma Xu
+        elif command in ['n', 'name']:
+            '''gives the courses containing the input phrase in their names'''
+            phrase = input("enter a phrase in course name: ")
+            schedule = schedule.phraseInName(phrase)
+       
         else:
             print('command',command,'is not supported')
             continue

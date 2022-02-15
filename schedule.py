@@ -75,3 +75,10 @@ class Schedule():
         #size filter by the num entered, find the course with size above num
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']>num])
 
+    #Implemented by Emma Xu
+    def description(self, phrase):
+        ''' filters courses containing the phrase in the description (case-insensitive)'''
+        return Schedule([course for course in self.courses if (course['description'].lower().find(phrase.lower())!= -1)])
+    def phraseInName(self, phrase):
+        '''filters courses conatining the phrase in their names (case-insensitive)'''
+        return Schedule([course for course in self.courses if (course['name'].lower().find(phrase.lower()+" ") != -1)])
