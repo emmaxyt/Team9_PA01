@@ -51,8 +51,7 @@ class Schedule():
             return Schedule(sorted(self.courses, key= lambda course: course['term'], reverse=True))
         else:
             print("can't sort by "+str(field)+" yet")
-            return self
-    
+            return self  
     # Implemented by Tianjun Cai
     def course(self, courseinfo):
         code = courseinfo.strip().split()
@@ -70,7 +69,6 @@ class Schedule():
     def sizeBelow(self,num):
          #size filter by the num entered, find the course with size below num
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']<num])
-
     def sizeAbove(self,num):
         #size filter by the num entered, find the course with size above num
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']>num])
