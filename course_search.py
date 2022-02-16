@@ -62,18 +62,18 @@ def topmenu():
 
         # Implemented by Tianjun Cai
         elif command in ['time', 'timeofday']: 
-            time = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
-            schedule = schedule.time(time).sort('subject')
+            time_course = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
+            schedule = schedule.time(time_course).sort('subject')
 
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
 
-        #implemented by Siyu
+        # Implemented by Siyu
         elif command in ['i', 'instructor']:
             instructor = input("enter an instructor:")
             schedule = schedule.lastname([instructor])
-         #implemented by Siyu
+         # Implemented by Siyu
         elif command in ['a', 'above']:
             above = int(input("enter a number of class limit:"))
             schedule = schedule.sizeAbove(above)
@@ -81,12 +81,12 @@ def topmenu():
             below = int(input("enter a number of class limit:"))
             schedule = schedule.sizeBelow(below)
         
-        #implemented by Emma Xu
+        # Implemented by Emma Xu
         elif command in ['d', 'description']:
             '''gives the courses containing the input phrase in their descriptions'''
             phrase = input("enter a phrase in course description:")
             schedule = schedule.description(phrase)
-        #implemented by Emma Xu
+        # Implemented by Emma Xu
         elif command in ['n', 'name']:
             '''gives the courses containing the input phrase in their names'''
             phrase = input("enter a phrase in course name: ")
