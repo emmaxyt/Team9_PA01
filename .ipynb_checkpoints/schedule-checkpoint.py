@@ -45,6 +45,7 @@ class Schedule():
         return Schedule([course for course in self.courses if course['subject'] in subjects])
 
     def sort(self,field):
+        ''' sort corses based on given terms '''
         if field == 'subject':
             return Schedule(sorted(self.courses, key= lambda course: course['subject']))
         elif field == 'term':
@@ -52,12 +53,14 @@ class Schedule():
         else:
             print("can't sort by "+str(field)+" yet")
             return self
-    
+
     # Implemented by Tianjun Cai
     def course(self, courseinfo):
+        ''' filters courses by subject and coursenum '''
         code = courseinfo.strip().split()
         return Schedule([course for course in self.courses if course['code'] == code])
     def time(self, timeinfo):
+        ''' filters courses by start time and date'''
         purify_timeinfo = timeinfo.strip().split()
         time = purify_timeinfo[0]
         date = purify_timeinfo[1:]
@@ -65,9 +68,20 @@ class Schedule():
         return Schedule([course for course in self.courses if course['times'] != []
         and course['times'][0]['start'] == int(time)*60
         and set(date) == set(course['times'][0]['days'])])
-    
+
     # Implemented by Siyu Yang
+    def sizeBelow(self,num):
+        ''' size filter by the num entered, find the course with size below num '''
+        return Schedule([course for course in self.courses if course['limit']is not None and course['limit']<num])
     def sizeAbove(self,num):
-        #size filter by the num entered, find the course with size above num
+        ''' size filter by the num entered, find the course with size above num '''
         return Schedule([course for course in self.courses if course['limit']is not None and course['limit']>num])
 
+    # Implemented by Emma Xu
+    def description(self, phrase):
+        ''' filters courses containing the phrase in the description (case-insensitive)'''
+        return Schedule([course for course in self.courses if course['description'].lower().find(phrase.lower()) != -1])
+    def phraseInName(self, phrase):
+        '''filters courses conatining the phrase in their names (case-insensitive)'''
+        return Schedule([course for course in self.courses if course['name'].lower().find(phrase.lower()+" ") != -1])
+    
