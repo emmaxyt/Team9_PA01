@@ -93,7 +93,7 @@ def topmenu():
             schedule = schedule.phraseInName(phrase)
 
        # Implemented by Yuxuan Liu
-        elif command in ['title', 'title']:
+        elif command in ['title']:
             # filter by title
             phrase = input("enter a phrase in course title: ")
             schedule = schedule.title(phrase)
