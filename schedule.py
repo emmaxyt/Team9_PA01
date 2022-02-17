@@ -96,4 +96,4 @@ class Schedule():
     # Implemented by Yuxuan Liu
     def title(self, phrase):
         '''filters courses containing the phrase in their title (Including course subject, number, and name)'''
-        return Schedule([course for course in self.courses if (course['subject']+course['num']+course['name']).lower().find(phrase.lower()) != -1])
+        return Schedule([course for course in self.courses if (course['subject']+course['coursenum']+course['name']).lower().find(phrase.lower()) != -1])

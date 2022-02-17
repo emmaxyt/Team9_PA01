@@ -82,6 +82,18 @@ class Schedule():
         ''' filters courses containing the phrase in the description (case-insensitive)'''
         return Schedule([course for course in self.courses if course['description'].lower().find(phrase.lower()) != -1])
     def phraseInName(self, phrase):
-        '''filters courses conatining the phrase in their names (case-insensitive)'''
+        '''filters courses containing the phrase in their names (case-insensitive)'''
         return Schedule([course for course in self.courses if course['name'].lower().find(phrase.lower()+" ") != -1])
-    
+
+    # Implemented by Yi-Zhe Hong
+    def IndependentStudy(self,decision): 
+        '''filters the courses by decision of independent study or not'''
+        return Schedule([course for course in self.courses if course['independent_study']==decision])
+    def available(self,subjects):
+        '''find the specific subjects courses that are still available for enrolling'''
+        return Schedule([course for course in self.courses if course['subject'] in subjects and course['limit']>course['enrolled']])
+
+    # Implemented by Yuxuan Liu
+    def title(self, phrase):
+        '''filters courses containing the phrase in their title (Including course subject, number, and name)'''
+        return Schedule([course for course in self.courses if (course['subject']+course['coursenum']+course['name']).lower().find(phrase.lower()) != -1])
