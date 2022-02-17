@@ -24,6 +24,8 @@ subject (filter by subject, e.g. COSI, or LALS)
 title  (filter by phrase in title)
 description (filter by phrase in description)
 timeofday (filter by day and time, e.g. meets at 11 on Wed)
+independent study (filter by if a course is an independent study or no)
+available (filter by enrollment number ofa a certain subject , return all available courses)
 '''
 
 terms = {c['term'] for c in schedule.courses}
@@ -65,10 +67,6 @@ def topmenu():
             time_course = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
             schedule = schedule.time(time_course).sort('subject')
 
-        elif command in ['s','subject']:
-            subject = input("enter a subject:")
-            schedule = schedule.subject([subject])
-
         # Implemented by Siyu Yang
         elif command in ['i', 'instructor']:
             instructor = input("enter an instructor:")
@@ -92,12 +90,25 @@ def topmenu():
             phrase = input("enter a phrase in course name: ")
             schedule = schedule.phraseInName(phrase)
 
+<<<<<<< Updated upstream
        # Implemented by Yuxuan Liu
         elif command == 'title':
             # shortcut 't' already exist
             # filter by title
             phrase = input("enter a phrase in course title: ")
             schedule = schedule.title(phrase)
+=======
+       # Implemented by Yizhe Hong
+        elif command in ['is', 'IndependentStudy']:
+            '''gives the courses that are independent studies or not'''
+            decision = input("enter a boolean: true for independent study, false for not: ")
+            schedule = schedule.IndependentStudy(decision)
+
+        elif command in ['available']:
+            '''gives all the courses that are available'''
+            subject = input("enter a subject that you want to find available courses: ")
+            schedule = schedule.available(subject)
+>>>>>>> Stashed changes
 
         else:
             print('command',command,'is not supported')

@@ -88,12 +88,17 @@ class Schedule():
     # Implemented by Yi-Zhe Hong
     def IndependentStudy(self,decision): 
         '''filters the courses by decision of independent study or not'''
-        return Schedule([course for course in self.courses if course['independent_study']==decision])
+        return Schedule([course for course in self.courses if course['independent_study'] == bool(decision)])
     def available(self,subjects):
         '''find the specific subjects courses that are still available for enrolling'''
+<<<<<<< Updated upstream
         return Schedule([course for course in self.courses if course['subject'] in subjects and course['limit']>course['enrolled']])
 
     # Implemented by Yuxuan Liu
     def title(self, phrase):
         '''filters courses containing the phrase in their title (course code + course name)'''
         return Schedule([course for course in self.courses if phrase.lower() in ''.join(course['code']).lower() or phrase.lower() in course['name'].lower()])
+=======
+        return Schedule([course for course in self.courses if course['subject'] is not None and course['subject'] in subjects and course['limit'] is not None and course['enrolled'] is not None and course['limit']>course['enrolled']])
+    
+>>>>>>> Stashed changes
