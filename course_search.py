@@ -90,14 +90,13 @@ def topmenu():
             phrase = input("enter a phrase in course name: ")
             schedule = schedule.phraseInName(phrase)
 
-<<<<<<< Updated upstream
        # Implemented by Yuxuan Liu
         elif command == 'title':
             # shortcut 't' already exist
             # filter by title
             phrase = input("enter a phrase in course title: ")
             schedule = schedule.title(phrase)
-=======
+
        # Implemented by Yizhe Hong
         elif command in ['is', 'IndependentStudy']:
             '''gives the courses that are independent studies or not'''
@@ -108,7 +107,6 @@ def topmenu():
             '''gives all the courses that are available'''
             subject = input("enter a subject that you want to find available courses: ")
             schedule = schedule.available(subject)
->>>>>>> Stashed changes
 
         else:
             print('command',command,'is not supported')
