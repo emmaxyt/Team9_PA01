@@ -69,11 +69,11 @@ def topmenu():
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
 
-        # Implemented by Siyu
+        # Implemented by Siyu Yang
         elif command in ['i', 'instructor']:
             instructor = input("enter an instructor:")
             schedule = schedule.lastname([instructor])
-         # Implemented by Siyu
+         # Implemented by Siyu Yang
         elif command in ['a', 'above']:
             print(123)
             above = int(input("enter a number of class limit:"))
