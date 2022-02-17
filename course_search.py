@@ -75,7 +75,6 @@ def topmenu():
             schedule = schedule.lastname([instructor])
          # Implemented by Siyu
         elif command in ['a', 'above']:
-            print(123)
             above = int(input("enter a number of class limit:"))
             schedule = schedule.sizeAbove(above)
         elif command in ['b', 'below']:
