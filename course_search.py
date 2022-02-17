@@ -81,7 +81,7 @@ def topmenu():
             below = int(input("enter a number of class limit:"))
             schedule = schedule.sizeBelow(below)
         
-        # Implemented by Emma Xu
+        # Implemented by Emma Xu #slight change
         elif command in ['d', 'description']:
             '''gives the courses containing the input phrase in their descriptions'''
             phrase = input("enter a phrase in course description:")
