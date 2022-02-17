@@ -91,7 +91,13 @@ def topmenu():
             # gives the courses containing the input phrase in their names
             phrase = input("enter a phrase in course name: ")
             schedule = schedule.phraseInName(phrase)
-       
+
+       # Implemented by Yuxuan Liu
+        elif command in ['t', 'title']:
+            # filter by title
+            phrase = input("enter a phrase in course title: ")
+            schedule = schedule.title(phrase)
+
         else:
             print('command',command,'is not supported')
             continue
