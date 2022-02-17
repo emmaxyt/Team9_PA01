@@ -16,7 +16,8 @@ TOP_LEVEL_MENU = '''
 quit
 reset
 term  (filter by term)
-limit  (filter by class limit)
+above  (filter by class limit that is above a certain number)
+below (filter by class limit that is below a certain number)
 course (filter by coursenum, e.g. COSI 103a)
 instructor (filter by instructor)
 subject (filter by subject, e.g. COSI, or LALS)
@@ -61,21 +62,42 @@ def topmenu():
 
         # Implemented by Tianjun Cai
         elif command in ['time', 'timeofday']: 
-            time = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
-            schedule = schedule.time(time).sort('subject')
+            time_course = input("enter time and day (i.e. 16 m w) (time: 0-23 day: " + str(days) + "): ")
+            schedule = schedule.time(time_course).sort('subject')
 
         elif command in ['s','subject']:
             subject = input("enter a subject:")
             schedule = schedule.subject([subject])
 
-        #implemented by Siyu
+        # Implemented by Siyu Yang
         elif command in ['i', 'instructor']:
             instructor = input("enter an instructor:")
             schedule = schedule.lastname([instructor])
-         #implemented by Siyu
-        elif command in ['l', 'limit']:
-            limit = int(input("enter a number of class limit:"))
-            schedule = schedule.sizeAbove(limit)
+         # Implemented by Siyu Yang
+        elif command in ['a', 'above']:
+            above = int(input("enter a number of class limit:"))
+            schedule = schedule.sizeAbove(above)
+        elif command in ['b', 'below']:
+            below = int(input("enter a number of class limit:"))
+            schedule = schedule.sizeBelow(below)
+        
+        # Implemented by Emma Xu 
+        elif command in ['d', 'description']:
+            # gives the courses containing the input phrase in their descriptions
+            phrase = input("enter a phrase in course description:")
+            schedule = schedule.description(phrase)
+        # Implemented by Emma Xu
+        elif command in ['n', 'name']:
+            # gives the courses containing the input phrase in their names
+            phrase = input("enter a phrase in course name: ")
+            schedule = schedule.phraseInName(phrase)
+
+       # Implemented by Yuxuan Liu
+        elif command in ['title', 'title']:
+            # filter by title
+            phrase = input("enter a phrase in course title: ")
+            schedule = schedule.title(phrase)
+
         else:
             print('command',command,'is not supported')
             continue
