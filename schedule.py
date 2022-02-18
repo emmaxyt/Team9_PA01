@@ -55,6 +55,7 @@ class Schedule():
             return self
 
     # Implemented by Tianjun Cai
+    # This is a test for git
     def course(self, courseinfo):
         ''' filters courses by subject and coursenum '''
         code = courseinfo.strip().split()
